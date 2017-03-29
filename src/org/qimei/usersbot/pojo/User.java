@@ -3,12 +3,21 @@ package org.qimei.usersbot.pojo;
 import java.util.Date;
 import java.util.UUID;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable (tableName="Users")
 public class User {
 
+	@DatabaseField(generatedId = true, canBeNull = false, useGetSet = true)
 	private UUID id;
+	@DatabaseField(canBeNull = false, useGetSet = true)
 	private String fbId;
+	@DatabaseField(canBeNull = false, useGetSet = true)
 	private String emailId;
+	@DatabaseField(canBeNull = false, useGetSet = true)
 	private String userName;
+	@DatabaseField(canBeNull = false, useGetSet = true)
 	private Date lastLoginTime;
 
 	public UUID getId() {
