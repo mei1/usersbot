@@ -1,2 +1,2 @@
 # usersbot
-Using spring social to provide user login and user preferences
+Using Facebook SDK to provide user login and user preferences
