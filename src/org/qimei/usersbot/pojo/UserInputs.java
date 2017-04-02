@@ -3,6 +3,9 @@ package org.qimei.usersbot.pojo;
 public class UserInputs {
 	
 	User user;
+	UserLoginHistory userLoginHistory;
+	UserPreferences userPreferences;
+	UserNewsPreferences userNewsPreferences;
 	String columnName;
 	Object columnValue;
 
@@ -12,6 +15,30 @@ public class UserInputs {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public UserLoginHistory getUserLoginHistory() {
+		return userLoginHistory;
+	}
+
+	public void setUserLoginHistory(UserLoginHistory userLoginHistory) {
+		this.userLoginHistory = userLoginHistory;
+	}
+
+	public UserPreferences getUserPreferences() {
+		return userPreferences;
+	}
+
+	public void setUserPreferences(UserPreferences userPreferences) {
+		this.userPreferences = userPreferences;
+	}
+
+	public UserNewsPreferences getUserNewsPreferences() {
+		return userNewsPreferences;
+	}
+
+	public void setUserNewsPreferences(UserNewsPreferences userNewsPreferences) {
+		this.userNewsPreferences = userNewsPreferences;
 	}
 
 	public String getColumnName() {
