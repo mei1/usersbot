@@ -18,7 +18,7 @@ public class User {
 	@DatabaseField(canBeNull = false, useGetSet = true)
 	private String userName;
 	@DatabaseField(canBeNull = false, useGetSet = true)
-	private Date lastLoginTime;
+	private Date creationDate;
 
 	public UUID getId() {
 		return id;
@@ -52,11 +52,12 @@ public class User {
 		this.userName = userName;
 	}
 
-	public Date getLastLoginTime() {
-		return lastLoginTime;
+	public Date getCreationDate() {
+		return creationDate;
 	}
 
-	public void setLastLoginTime(Date lastLoginTime) {
-		this.lastLoginTime = lastLoginTime;
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
+
 }
