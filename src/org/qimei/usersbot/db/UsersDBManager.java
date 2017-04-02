@@ -8,6 +8,9 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.qimei.usersbot.pojo.User;
+import org.qimei.usersbot.pojo.UserLoginHistory;
+import org.qimei.usersbot.pojo.UserNewsPreferences;
+import org.qimei.usersbot.pojo.UserPreferences;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -21,6 +24,9 @@ public class UsersDBManager {
 
 	private static UsersDBManager dbManager;
 	private static Dao<User, Object> userDao;
+	private static Dao<UserLoginHistory, Object> userLoginHistoryDao;
+	private static Dao<UserNewsPreferences, Object> userNewsPreferences;
+	private static Dao<UserPreferences, Object> userPreferences;
 	private static ConnectionSource connectionSource;
 
 	private UsersDBManager() {
@@ -55,13 +61,33 @@ public class UsersDBManager {
 
 	private void createDaoObjects() throws SQLException {
 		userDao = DaoManager.createDao(connectionSource, User.class);
+		userLoginHistoryDao = DaoManager.createDao(connectionSource, UserLoginHistory.class);
+		userNewsPreferences = DaoManager.createDao(connectionSource, UserNewsPreferences.class);
+		userPreferences = DaoManager.createDao(connectionSource, UserPreferences.class);
+		
 	}
 
 	private void createTablesIfNotExist() throws SQLException {
 		TableUtils.createTableIfNotExists(connectionSource, User.class);
+		TableUtils.createTableIfNotExists(connectionSource, UserLoginHistory.class);
+		TableUtils.createTableIfNotExists(connectionSource, UserNewsPreferences.class);
+		TableUtils.createTableIfNotExists(connectionSource, UserPreferences.class);
+		
 	}
 
 	public Dao<User, Object> getUserDao() {
 		return userDao;
+	}
+	
+	public Dao<UserLoginHistory, Object> getUserLoginHistoryDao() {
+		return userLoginHistoryDao;
+	}
+	
+	public Dao<UserNewsPreferences, Object> getUserNewsPreferencesDao() {
+		return userNewsPreferences;
+	}
+	
+	public Dao<UserPreferences, Object> getUserPreferencesDao() {
+		return userPreferences;
 	}
 }
