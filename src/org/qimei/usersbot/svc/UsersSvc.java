@@ -15,7 +15,9 @@ import org.qimei.usersbot.pojo.UserPreferences;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class UsersSvc {
 
 	private static final Logger logger = Logger.getLogger(UsersSvc.class);

@@ -31,7 +31,7 @@ public class UserDBTests {
 	@Before
 	public void setUp() throws Exception {
 		dbManager = UsersDBManager.getInstance();
-		dbManager.initDbConnection("jdbc:sqlite:User.db", false);
+		dbManager.initDbConnection("jdbc:sqlite:usersbot.db", false);
 		dbHelper = UsersDBHelper.getInstance();
 	}
 	
