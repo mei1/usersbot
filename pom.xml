@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.qimei.usersbot</groupId>
 	<artifactId>usersbot</artifactId>
-	<version>0.1</version>
+	<version>1.0</version>
 	<packaging>war</packaging>
 	<name>usersbot</name>
 	<description>Using spring social to provide user login and user preferences</description>
