@@ -6,6 +6,7 @@ public class UserInputs {
 	UserLoginHistory userLoginHistory;
 	UserPreferences userPreferences;
 	UserNewsPreferences userNewsPreferences;
+	UserNewsSourcesPreferences userNewsSourcesPreferences;
 	String columnName;
 	Object columnValue;
 
@@ -55,6 +56,14 @@ public class UserInputs {
 
 	public void setColumnValue(Object columnValue) {
 		this.columnValue = columnValue;
+	}
+
+	public UserNewsSourcesPreferences getUserNewsSourcesPreferences() {
+		return userNewsSourcesPreferences;
+	}
+
+	public void setUserNewsSourcesPreferences(UserNewsSourcesPreferences userNewsSourcesPreferences) {
+		this.userNewsSourcesPreferences = userNewsSourcesPreferences;
 	}
 
 }

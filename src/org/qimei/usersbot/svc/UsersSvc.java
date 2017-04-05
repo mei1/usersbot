@@ -11,6 +11,7 @@ import org.qimei.usersbot.pojo.User;
 import org.qimei.usersbot.pojo.UserInputs;
 import org.qimei.usersbot.pojo.UserLoginHistory;
 import org.qimei.usersbot.pojo.UserNewsPreferences;
+import org.qimei.usersbot.pojo.UserNewsSourcesPreferences;
 import org.qimei.usersbot.pojo.UserPreferences;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,12 @@ public class UsersSvc {
 	public int insertIntoUserPreferences(@RequestBody UserInputs userInputs) throws SQLException {
 		logger.info("Insert into user preferences request");
 		return UsersDBHelper.getInstance().insertIntoUserPreferences(userInputs.getUserPreferences());
+	}
+	
+	@RequestMapping(value = "insertusernewssourcespreferencesdata", method = RequestMethod.POST, produces = "application/json")
+	public int insertIntoUserNewsSourcesPreferences(@RequestBody UserInputs userInputs) throws SQLException {
+		logger.info("Insert into user news sources preferences request");
+		return UsersDBHelper.getInstance().intertIntoUserNewsSourcesPreferences(userInputs.getUserNewsSourcesPreferences());
 	}
 
 	@RequestMapping(value = "alluser", method = RequestMethod.GET, produces = "application/json")
@@ -86,15 +93,22 @@ public class UsersSvc {
 	@RequestMapping(value = "usernewspreferencesbyid", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public List<UserNewsPreferences> getUserNewsPreferencesById(@RequestBody User userIdObj)
 			throws JSONException, SQLException {
-		logger.info("All user login history request by ID - " + userIdObj);
+		logger.info("All user news preferences request by ID - " + userIdObj);
 		return UsersDBHelper.getInstance().getUserNewsPreferencesById((UUID) userIdObj.getId());
 	}
 
 	@RequestMapping(value = "userpreferencesbyid", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public List<UserPreferences> getUserPreferencesById(@RequestBody User userIdObj)
 			throws JSONException, SQLException {
-		logger.info("All user login history request by ID - " + userIdObj);
+		logger.info("All user preferences request by ID - " + userIdObj);
 		return UsersDBHelper.getInstance().getUserPreferencesById((UUID) userIdObj.getId());
+	}
+	
+	@RequestMapping(value = "usernewssourcespreferencesbyid", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public List<UserNewsSourcesPreferences> getUserNewsSourcesPreferencesById(@RequestBody User userIdObj)
+			throws JSONException, SQLException {
+		logger.info("All user news sources preferences request by ID - " + userIdObj);
+		return UsersDBHelper.getInstance().getUserNewsSourcesPreferencesById((UUID) userIdObj.getId());
 	}
 
 	@RequestMapping(value = "updateuser", method = RequestMethod.POST, produces = "application/json")
@@ -125,6 +139,14 @@ public class UsersSvc {
 		logger.info("Update user preferences request");
 		return UsersDBHelper.getInstance().updateUserPreferencesById(
 				userInputs.getUserPreferences().getUser().getId(), userInputs.getColumnName(),
+				userInputs.getColumnValue());
+	}
+	
+	@RequestMapping(value = "updateusernewssourcespreferences", method = RequestMethod.POST, produces = "application/json")
+	public int updateUserNewsSourcesPreferencesById(@RequestBody UserInputs userInputs) throws SQLException {
+		logger.info("Update user news sources preferences request");
+		return UsersDBHelper.getInstance().updateUserNewsSourcesPreferencesById(
+				userInputs.getUserNewsSourcesPreferences().getUser().getId(), userInputs.getColumnName(),
 				userInputs.getColumnValue());
 	}
 

@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import org.qimei.usersbot.pojo.User;
 import org.qimei.usersbot.pojo.UserLoginHistory;
 import org.qimei.usersbot.pojo.UserNewsPreferences;
+import org.qimei.usersbot.pojo.UserNewsSourcesPreferences;
 import org.qimei.usersbot.pojo.UserPreferences;
 
 import com.j256.ormlite.dao.Dao;
@@ -27,6 +28,7 @@ public class UsersDBManager {
 	private static Dao<UserLoginHistory, Object> userLoginHistoryDao;
 	private static Dao<UserNewsPreferences, Object> userNewsPreferences;
 	private static Dao<UserPreferences, Object> userPreferences;
+	private static Dao<UserNewsSourcesPreferences, Object> userNewsSourcesPreferences;
 	private static ConnectionSource connectionSource;
 
 	private UsersDBManager() {
@@ -64,6 +66,7 @@ public class UsersDBManager {
 		userLoginHistoryDao = DaoManager.createDao(connectionSource, UserLoginHistory.class);
 		userNewsPreferences = DaoManager.createDao(connectionSource, UserNewsPreferences.class);
 		userPreferences = DaoManager.createDao(connectionSource, UserPreferences.class);
+		userNewsSourcesPreferences = DaoManager.createDao(connectionSource, UserNewsSourcesPreferences.class);
 		
 	}
 
@@ -72,6 +75,7 @@ public class UsersDBManager {
 		TableUtils.createTableIfNotExists(connectionSource, UserLoginHistory.class);
 		TableUtils.createTableIfNotExists(connectionSource, UserNewsPreferences.class);
 		TableUtils.createTableIfNotExists(connectionSource, UserPreferences.class);
+		TableUtils.createTableIfNotExists(connectionSource, UserNewsSourcesPreferences.class);
 		
 	}
 
@@ -89,5 +93,9 @@ public class UsersDBManager {
 	
 	public Dao<UserPreferences, Object> getUserPreferencesDao() {
 		return userPreferences;
+	}
+	
+	public Dao<UserNewsSourcesPreferences, Object> getUserNewsSourcesPreferencesDao() {
+		return userNewsSourcesPreferences;
 	}
 }

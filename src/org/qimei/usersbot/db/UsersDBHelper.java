@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.qimei.usersbot.pojo.User;
 import org.qimei.usersbot.pojo.UserLoginHistory;
 import org.qimei.usersbot.pojo.UserNewsPreferences;
+import org.qimei.usersbot.pojo.UserNewsSourcesPreferences;
 import org.qimei.usersbot.pojo.UserPreferences;
 
 import com.j256.ormlite.stmt.UpdateBuilder;
@@ -49,6 +50,12 @@ public class UsersDBHelper {
 
 		return rowCount;
 	}
+	
+	public int intertIntoUserNewsSourcesPreferences (UserNewsSourcesPreferences userNewsSourcesPreferences) throws SQLException {
+		int rowCount = UsersDBManager.getInstance().getUserNewsSourcesPreferencesDao().create(userNewsSourcesPreferences);
+		
+		return rowCount;
+	}
 
 	public int updateUserById(UUID id, String columnName, Object columnValue) throws SQLException {
 
@@ -86,6 +93,15 @@ public class UsersDBHelper {
 
 	}
 	
+	public int updateUserNewsSourcesPreferencesById(UUID id, String columnName, Object columnValue) throws SQLException {
+
+		UpdateBuilder<UserNewsSourcesPreferences, Object> updateBuilder = UsersDBManager.getInstance().getUserNewsSourcesPreferencesDao().updateBuilder();
+		updateBuilder.updateColumnValue(columnName, columnValue);
+		updateBuilder.where().eq("id", id);
+		return updateBuilder.update();
+
+	}
+	
 	public List<User> getAllUsersFromDB() throws SQLException {
 		return UsersDBManager.getInstance().getUserDao().queryForAll();
 	}
@@ -116,6 +132,10 @@ public class UsersDBHelper {
 	
 	public List<UserPreferences> getUserPreferencesById(UUID id) throws SQLException {
 		return UsersDBManager.getInstance().getUserPreferencesDao().queryForEq("id", id);
+	}
+	
+	public List<UserNewsSourcesPreferences> getUserNewsSourcesPreferencesById(UUID id) throws SQLException {
+		return UsersDBManager.getInstance().getUserNewsSourcesPreferencesDao().queryForEq("id", id);
 	}
 	
 }

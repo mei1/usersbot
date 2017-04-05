@@ -14,6 +14,7 @@ import org.qimei.usersbot.db.UsersDBManager;
 import org.qimei.usersbot.pojo.User;
 import org.qimei.usersbot.pojo.UserLoginHistory;
 import org.qimei.usersbot.pojo.UserNewsPreferences;
+import org.qimei.usersbot.pojo.UserNewsSourcesPreferences;
 import org.qimei.usersbot.pojo.UserPreferences;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -93,6 +94,21 @@ public class UserDBTests {
 		userPreferences.setUserPreferences("Politics");
 		
 		int rowCount = dbHelper.insertIntoUserPreferences(userPreferences);
+		
+		assert (rowCount > 0);
+	}
+	
+	@Test
+	public void testInsertUserNewsSourcesPreferences() throws SQLException {
+		
+		User user = new User();
+		UserNewsSourcesPreferences userNewsSourcesPreferences = new UserNewsSourcesPreferences();
+		user.setId(UUID.fromString("db93d7cc-c171-4a82-b6d0-357611727172"));
+		userNewsSourcesPreferences.setUser(user);
+		userNewsSourcesPreferences.setNewsSourceId("34234646745333");
+		userNewsSourcesPreferences.setAddedTime(Calendar.getInstance().getTime());
+		
+		int rowCount = dbHelper.intertIntoUserNewsSourcesPreferences(userNewsSourcesPreferences);
 		
 		assert (rowCount > 0);
 	}
