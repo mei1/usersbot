@@ -16,13 +16,21 @@ public class UserContextListener implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
+		
+		logger.warn(" -- contextInitialized begin -- ");
+		
 		try {
+			logger.warn(" -- db connections begin -- ");
 			UsersDBManager.getInstance().initDbConnection(JNDI_USERSBOT_DB, true);
 		} catch (SQLException e) {
 			logger.error(e, e);
 		} catch (NamingException e) {
 			logger.error(e, e);
+		} finally {
+			logger.warn(" -- db connections end -- ");
 		}
+		
+		logger.warn(" -- contextInitialized end -- ");
 	}
 
 	@Override
