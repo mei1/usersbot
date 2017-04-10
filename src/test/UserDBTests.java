@@ -12,8 +12,8 @@ import org.junit.Test;
 import org.qimei.usersbot.db.UsersDBHelper;
 import org.qimei.usersbot.db.UsersDBManager;
 import org.qimei.usersbot.pojo.User;
+import org.qimei.usersbot.pojo.UserActivities;
 import org.qimei.usersbot.pojo.UserLoginHistory;
-import org.qimei.usersbot.pojo.UserNewsPreferences;
 import org.qimei.usersbot.pojo.UserNewsSourcesPreferences;
 import org.qimei.usersbot.pojo.UserPreferences;
 
@@ -73,13 +73,16 @@ public class UserDBTests {
 	public void testInsertUserNewsPreferences() throws SQLException {
 		
 		User user = new User();
-		UserNewsPreferences userNewsPreferences = new UserNewsPreferences();
+		UserActivities userActivities = new UserActivities();
 		user.setId(UUID.fromString("db93d7cc-c171-4a82-b6d0-357611727172"));
-		userNewsPreferences.setUser(user);
-		userNewsPreferences.setArticleId("1231231");
-		userNewsPreferences.setViewTime(Calendar.getInstance().getTime());
+		userActivities.setUser(user);
+		userActivities.setAppId("abc123");
+		userActivities.setAppData("apps data");
+		userActivities.setActivityId("123abc");
+		userActivities.setTimeStamp(Calendar.getInstance().getTime());
 		
-		int rowCount = dbHelper.insertIntoUserNewsPreferences(userNewsPreferences);
+		
+		int rowCount = dbHelper.insertIntoUserActivities(userActivities);
 		
 		assert (rowCount > 0);
 	}

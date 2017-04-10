@@ -8,9 +8,9 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.qimei.usersbot.db.UsersDBHelper;
 import org.qimei.usersbot.pojo.User;
+import org.qimei.usersbot.pojo.UserActivities;
 import org.qimei.usersbot.pojo.UserInputs;
 import org.qimei.usersbot.pojo.UserLoginHistory;
-import org.qimei.usersbot.pojo.UserNewsPreferences;
 import org.qimei.usersbot.pojo.UserNewsSourcesPreferences;
 import org.qimei.usersbot.pojo.UserPreferences;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,10 +35,10 @@ public class UsersSvc {
 		return UsersDBHelper.getInstance().insertIntoUserLoginHistory(userInputs.getUserLoginHistory());
 	}
 
-	@RequestMapping(value = "insertusernewspreferencesdata", method = RequestMethod.POST, produces = "application/json")
-	public int insertIntoUserNewsPreferences(@RequestBody UserInputs userInputs) throws SQLException {
-		logger.info("Insert into user news preferences request");
-		return UsersDBHelper.getInstance().insertIntoUserNewsPreferences(userInputs.getUserNewsPreferences());
+	@RequestMapping(value = "insertuseractivitiesdata", method = RequestMethod.POST, produces = "application/json")
+	public int insertIntoUserActivities(@RequestBody UserInputs userInputs) throws SQLException {
+		logger.info("Insert into user activities request");
+		return UsersDBHelper.getInstance().insertIntoUserActivities(userInputs.getUserActivities());
 	}
 
 	@RequestMapping(value = "insertuserpreferencesdata", method = RequestMethod.POST, produces = "application/json")
@@ -65,10 +65,10 @@ public class UsersSvc {
 		return UsersDBHelper.getInstance().getAllUserLoginHistoryFromDB();
 	}
 
-	@RequestMapping(value = "allusernewspreferences", method = RequestMethod.GET, produces = "application/json")
-	public List<UserNewsPreferences> getAllUserNewsPreferences() throws SQLException {
-		logger.info("All user news preferences request");
-		return UsersDBHelper.getInstance().getAllUserNewsPreferencesFromDB();
+	@RequestMapping(value = "alluseractivities", method = RequestMethod.GET, produces = "application/json")
+	public List<UserActivities> getAllUserActivities() throws SQLException {
+		logger.info("All user activities request");
+		return UsersDBHelper.getInstance().getAllUserActivitiesFromDB();
 	}
 
 	@RequestMapping(value = "alluserpreferences", method = RequestMethod.GET, produces = "application/json")
@@ -90,11 +90,11 @@ public class UsersSvc {
 		return UsersDBHelper.getInstance().getUserLoginHistoryById((UUID) userIdObj.getId());
 	}
 
-	@RequestMapping(value = "usernewspreferencesbyid", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-	public List<UserNewsPreferences> getUserNewsPreferencesById(@RequestBody User userIdObj)
+	@RequestMapping(value = "useractivitiesbyid", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public List<UserActivities> getUserNewsPreferencesById(@RequestBody User userIdObj)
 			throws JSONException, SQLException {
-		logger.info("All user news preferences request by ID - " + userIdObj);
-		return UsersDBHelper.getInstance().getUserNewsPreferencesById((UUID) userIdObj.getId());
+		logger.info("All user activities request by ID - " + userIdObj);
+		return UsersDBHelper.getInstance().getUserActivitiesById((UUID) userIdObj.getId());
 	}
 
 	@RequestMapping(value = "userpreferencesbyid", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
@@ -126,11 +126,11 @@ public class UsersSvc {
 				userInputs.getColumnValue());
 	}
 
-	@RequestMapping(value = "updateusernewspreferences", method = RequestMethod.POST, produces = "application/json")
-	public int updateUserNewsPreferencesById(@RequestBody UserInputs userInputs) throws SQLException {
-		logger.info("Update user news preferences request");
-		return UsersDBHelper.getInstance().updateUserNewsPreferencesById(
-				userInputs.getUserNewsPreferences().getUser().getId(), userInputs.getColumnName(),
+	@RequestMapping(value = "updateuseractivities", method = RequestMethod.POST, produces = "application/json")
+	public int updateUserActivitiesById(@RequestBody UserInputs userInputs) throws SQLException {
+		logger.info("Update user activities request");
+		return UsersDBHelper.getInstance().updateUserActivitiesById(
+				userInputs.getUserActivities().getUser().getId(), userInputs.getColumnName(),
 				userInputs.getColumnValue());
 	}
 	

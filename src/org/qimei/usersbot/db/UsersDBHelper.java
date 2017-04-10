@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.qimei.usersbot.pojo.User;
+import org.qimei.usersbot.pojo.UserActivities;
 import org.qimei.usersbot.pojo.UserLoginHistory;
-import org.qimei.usersbot.pojo.UserNewsPreferences;
 import org.qimei.usersbot.pojo.UserNewsSourcesPreferences;
 import org.qimei.usersbot.pojo.UserPreferences;
 
@@ -39,8 +39,8 @@ public class UsersDBHelper {
 		return rowCount;
 	}
 	
-	public int insertIntoUserNewsPreferences(UserNewsPreferences userNewsPreferences) throws SQLException {
-		int rowCount = UsersDBManager.getInstance().getUserNewsPreferencesDao().create(userNewsPreferences);
+	public int insertIntoUserActivities(UserActivities userActivities) throws SQLException {
+		int rowCount = UsersDBManager.getInstance().getUserActivitiesDao().create(userActivities);
 
 		return rowCount;
 	}
@@ -75,9 +75,9 @@ public class UsersDBHelper {
 
 	}
 	
-	public int updateUserNewsPreferencesById(UUID id, String columnName, Object columnValue) throws SQLException {
+	public int updateUserActivitiesById(UUID id, String columnName, Object columnValue) throws SQLException {
 
-		UpdateBuilder<UserNewsPreferences, Object> updateBuilder = UsersDBManager.getInstance().getUserNewsPreferencesDao().updateBuilder();
+		UpdateBuilder<UserActivities, Object> updateBuilder = UsersDBManager.getInstance().getUserActivitiesDao().updateBuilder();
 		updateBuilder.updateColumnValue(columnName, columnValue);
 		updateBuilder.where().eq("id", id);
 		return updateBuilder.update();
@@ -110,8 +110,8 @@ public class UsersDBHelper {
 		return UsersDBManager.getInstance().getUserLoginHistoryDao().queryForAll();
 	}
 	
-	public List<UserNewsPreferences> getAllUserNewsPreferencesFromDB() throws SQLException {
-		return UsersDBManager.getInstance().getUserNewsPreferencesDao().queryForAll();
+	public List<UserActivities> getAllUserActivitiesFromDB() throws SQLException {
+		return UsersDBManager.getInstance().getUserActivitiesDao().queryForAll();
 	}
 	
 	public List<UserPreferences> getAllUserPreferencesFromDB() throws SQLException {
@@ -126,8 +126,8 @@ public class UsersDBHelper {
 		return UsersDBManager.getInstance().getUserLoginHistoryDao().queryForEq("id", id);
 	}
 	
-	public List<UserNewsPreferences> getUserNewsPreferencesById(UUID id) throws SQLException {
-		return UsersDBManager.getInstance().getUserNewsPreferencesDao().queryForEq("id", id);
+	public List<UserActivities> getUserActivitiesById(UUID id) throws SQLException {
+		return UsersDBManager.getInstance().getUserActivitiesDao().queryForEq("id", id);
 	}
 	
 	public List<UserPreferences> getUserPreferencesById(UUID id) throws SQLException {
